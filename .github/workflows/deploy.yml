@@ -25,9 +25,9 @@ jobs:
         with:
           node-version: '20'  # Version de Node.js
 
-      # Étape pour mettre en cache les modules pnpm
+      # Étape pour mettre en cache les modules pnpm avec actions/cache@v3
       - name: Cache pnpm modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3  # Mise à jour vers v3
         with:
           path: ~/.pnpm-store  # Cache utilisé par pnpm pour stocker les dépendances
           key: node-cache-${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}  # Clé de cache basée sur le fichier pnpm-lock.yaml
