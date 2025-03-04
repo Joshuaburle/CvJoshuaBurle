@@ -1,0 +1,134 @@
+{
+  "basics": {
+    "name": "Joshua Burle",
+    "label": "Étudiant en tant que développeur web fullstack",
+    "image": "me_avatar.jpg",
+    "email": "joshua.burle@gmail.com",
+    "phone": "+33 6 14 54 11 65",
+    "url": "",
+    "summary": "En recherche d'une alternance de 2 ans à partir d'octobre 2025. Après cinq ans dans l'administration, je me suis reconverti dans l'informatique en constatant la croissance et les opportunités de ce secteur. J'ai décidé de m'y intéresser afin d'en faire mon métier.",
+    "theme": "blue",
+    "age": "20 ans",
+    "permis": "En cours pour Mars",
+    "location": {
+      "address": "64 avenue la crête des mouettes, bâtiment les mouettes",
+      "postalCode": "83380",
+      "city": "Les Issambres",
+      "region": "France"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "joshua-burle",
+        "url": "https://linkedin.com/in/joshua-burle"
+      },
+      {
+        "network": "GitHub",
+        "username": "joshuaburle",
+        "url": "https://github.com/Joshuaburle"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Cap Immo Sud",
+      "position": "Assistant Comptable",
+      "location": "Fréjus",
+      "startDate": "2023-09",
+      "endDate": "2024-04",
+      "responsibilities": [
+        "Rapprochement bancaire des comptes bancaires des copropriétés",
+        "Réalisation de l'état des dépenses des copropriétés",
+        "Envoi de mails et lettres aux copropriétaires pour compléter leur fiche d'identité"
+      ]
+    },
+    {
+      "name": "Hôtel le relais de Saint-Aygulf",
+      "position": "Assistant aux ressources humaines et assistant réceptionniste",
+      "startDate": "2021-01",
+      "endDate": "2021-02",
+      "responsibilities": [
+        "Demande de remboursement à une compagnie anglophone et prise d'appels en anglais",
+        "Traduction du menu du jour en hollandais et en anglais",
+        "Réception des clients et débit de leur réservation"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "La Plateforme_",
+      "area": "Bachelor IT",
+      "studyType": "Bachelor",
+      "startDate": "2024-10",
+      "endDate": "En cours"
+    },
+    {
+      "institution": "Lycée Saint-Exupéry",
+      "location": "Saint-Raphaël",
+      "area": "Baccalauréat professionnel Gestion et Administration",
+      "startDate": "2019-09",
+      "endDate": "2022-06"
+    },
+    {
+      "institution": "Collège Villeneuve",
+      "location": "Fréjus",
+      "area": "Brevet des collèges",
+      "startDate": "",
+      "endDate": ""
+    }
+  ],
+  "certificates": [],
+  "skills": [
+    {
+      "name":[
+        "Python \n",
+        "PHP \n",
+        "SQL \n",
+        "JavaScript"
+      ]
+    },
+    {
+      "name":[
+        "Organisation \n",
+        "Relationnel clientèle \n",
+        "Pack Office"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Français",
+      "fluency": "Langue maternelle"
+    },
+    {
+      "language": "Anglais",
+      "fluency": "Courant"
+    },
+    {
+      "language": "Espagnol",
+      "fluency": "Intermédiaire"
+    }
+  ],
+  "interests": [
+    {
+      "name":[
+        "Le chant",
+        "Le théâtre",
+        "Les jeux vidéos"
+      ]
+    }
+  ],
+  "references": [],
+  "projects": [
+    {
+      "name": "Fansite",
+      "startDate": "2024-10",
+      "description": "Réalisation d'un fansite",
+      "highlights": [
+        "Création des configurations de tour / set-up"
+      ],
+      "location": "La Plateforme - Cannes",
+      "isActive": true
+    }
+  ]
+}
