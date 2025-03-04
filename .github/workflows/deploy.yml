@@ -1,13 +1,10 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Déclenchement du workflow lors des push sur la branche `main`
   push:
     branches: [ main ]
-  # Permet l'exécution manuelle du workflow via l'onglet Actions sur GitHub
   workflow_dispatch:
 
-# Définition des permissions nécessaires pour le workflow
 permissions:
   contents: read
   pages: write
@@ -25,14 +22,14 @@ jobs:
         with:
           node-version: '20'  # Version de Node.js
 
-      # Étape pour mettre en cache les modules pnpm avec actions/cache@v3
+      # Cache les modules pnpm
       - name: Cache pnpm modules
-        uses: actions/cache@v3  # Mise à jour vers v3
+        uses: actions/cache@v3
         with:
-          path: ~/.pnpm-store  # Cache utilisé par pnpm pour stocker les dépendances
-          key: node-cache-${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}  # Clé de cache basée sur le fichier pnpm-lock.yaml
+          path: ~/.pnpm-store
+          key: node-cache-${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            node-cache-${{ runner.os }}-pnpm-  # Restauration partielle si aucune clé exacte n'est trouvée
+            node-cache-${{ runner.os }}-pnpm-
 
       - name: Install pnpm
         run: npm install -g pnpm  # Installation globale de pnpm
@@ -44,20 +41,20 @@ jobs:
         run: pnpm -v  # Vérification de la version de pnpm
 
       - name: List files in the repository
-        run: ls -alh  # Afficher les fichiers du dépôt pour déboguer
+        run: ls -alh  # Affiche les fichiers du dépôt pour déboguer
 
       - name: Install dependencies
-        run: pnpm install  # Installation des dépendances avec pnpm
+        run: pnpm install --verbose  # Ajout de --verbose pour plus de détails sur les erreurs
 
       - name: Build the project
-        run: pnpm build  # Construction du projet avec pnpm
+        run: pnpm build --verbose  # Ajout de --verbose pour plus de détails sur les erreurs
 
   deploy:
-    needs: build  # Dépendance de l'étape de build
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}  # URL de la page déployée
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
