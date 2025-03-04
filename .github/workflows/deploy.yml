@@ -1,14 +1,13 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Déclenchez le workflow chaque fois que vous poussez vers la branche `main`
-  # Vous utilisez un nom de branche différent ? Remplacez `main` par le nom de votre branche
+  # Déclenchement du workflow lors des push sur la branche `main`
   push:
     branches: [ main ]
-  # Vous permet d'exécuter ce workflow manuellement à partir de l'onglet Actions sur GitHub.
+  # Permet l'exécution manuelle du workflow via l'onglet Actions sur GitHub
   workflow_dispatch:
 
-# Autoriser cette tâche à cloner le dépôt et à créer un déploiement de page
+# Définition des permissions nécessaires pour le workflow
 permissions:
   contents: read
   pages: write
@@ -20,19 +19,46 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - name: Install, build, and upload your site
-        uses: withastro/action@v3
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-            node-version: 20 # The specific version of Node that should be used to build your site. Defaults to 20. (facultatif)
-            package-manager: pnpm@latest # Le gestionnaire de paquets Node qui doit être utilisé pour installer les dépendances et build votre site. Détecté automatiquement en fonction de votre lockfile. (facultatif)
+          node-version: '20'  # Version de Node.js
+
+      # Étape pour mettre en cache les modules pnpm
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store  # Cache utilisé par pnpm pour stocker les dépendances
+          key: node-cache-${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}  # Clé de cache basée sur le fichier pnpm-lock.yaml
+          restore-keys: |
+            node-cache-${{ runner.os }}-pnpm-  # Restauration partielle si aucune clé exacte n'est trouvée
+
+      - name: Install pnpm
+        run: npm install -g pnpm  # Installation globale de pnpm
+
+      - name: Display Node.js version
+        run: node -v  # Vérification de la version de Node.js
+
+      - name: Display pnpm version
+        run: pnpm -v  # Vérification de la version de pnpm
+
+      - name: List files in the repository
+        run: ls -alh  # Afficher les fichiers du dépôt pour déboguer
+
+      - name: Install dependencies
+        run: pnpm install  # Installation des dépendances avec pnpm
+
+      - name: Build the project
+        run: pnpm build  # Construction du projet avec pnpm
 
   deploy:
-    needs: build
+    needs: build  # Dépendance de l'étape de build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}  # URL de la page déployée
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4  # Action de déploiement sur GitHub Pages
