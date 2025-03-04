@@ -22,8 +22,17 @@ jobs:
         with:
           node-version: '20'  # Utilise la version de Node.js appropriée pour ton projet
 
-      - name: Install pnpm
-        run: npm install -g pnpm  # Installe pnpm globalement
+          - name: Install pnpm (latest version)
+          run: npm install -g pnpm@latest
+        
+
+      - name: Display Node.js and pnpm versions
+        run: |
+          node -v
+          pnpm -v
+
+      - name: List files
+        run: ls -alh
 
       - name: Install dependencies
         run: pnpm install  # Utilise pnpm pour installer les dépendances
